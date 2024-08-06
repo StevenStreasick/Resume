@@ -57,7 +57,7 @@ public class Resume  {
 	float subsectionPadding = 5f;
 	
 	//The font path 
-	private final static String FONTPATH = "main\\fonts";
+	private final static String FONTPATH = "fonts";
 	private final static String REPOURI = "https://github.com/StevenStreasick/Resume";
 	
 	//@return success
