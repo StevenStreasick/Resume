@@ -28,13 +28,11 @@ public class Endpoint {
 		if(resume == null) {
 			//Resume was null
 			return Response.serverError().build();
-			
 		}
 		
 		return Response.ok(resume)
 				.header("Content-Type", "application/pdf")
 				.header("Content-Disposition", "Attachment;filename=Steven Streasick Resume.pdf")
 				.build();
-	
 	}
 }
