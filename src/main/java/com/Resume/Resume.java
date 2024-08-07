@@ -516,7 +516,7 @@ public class Resume  {
 		PdfPCell experienceTitle = createSectionCell("EXPERIENCE");
 		
 		//Create a EJ software dev section 
-		PdfPTable experience1Header = createSubsectionTable("EJ Full Stack Software Developer", "May 2024 – Now", null);
+		PdfPTable experience1Header = createSubsectionTable("EJ Full Stack Software Developer", "May 2024 – August 2024", null);
 		
 		//Add software dev bullets
 		PdfPCell ejSWDBullet1 = createBulletCell("Developed and optimized PDF solutions using OpenPDF in Java, streamlining processes "
