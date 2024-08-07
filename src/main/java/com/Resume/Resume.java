@@ -47,7 +47,7 @@ public class Resume  {
 	
 	//The font path 
 	private final static String FONTPATH = "fonts";
-	private final static String REPOURI = "https://github.com/StevenStreasick/Resume";
+	private final static String REPOURI = "https://github.com/StevenStreasick/Resume/blob/main/README.md";
 	/**
 	 * Sets the fonts that will be used
 	 * 
@@ -87,35 +87,35 @@ public class Resume  {
 	 * @return {@code BufferedImage} storing the QR code
 	 */
 	private static BufferedImage createQRCode(String URI) {
-		 int scalar = 16;
+		int scalar = 16;
 		 
-		 QrCode.Ecc errorCorrectionLevel = QrCode.Ecc.LOW;
-	     QrCode qrCode = QrCode.encodeText(REPOURI, errorCorrectionLevel);
+		QrCode.Ecc errorCorrectionLevel = QrCode.Ecc.LOW;
+		QrCode qrCode = QrCode.encodeText(REPOURI, errorCorrectionLevel);
          
-	     int matrixSize = qrCode.size * scalar;
+		int matrixSize = qrCode.size * scalar;
          
-	     BufferedImage image = new BufferedImage(matrixSize, matrixSize, BufferedImage.TYPE_INT_RGB);
-         image.createGraphics();
+		BufferedImage image = new BufferedImage(matrixSize, matrixSize, BufferedImage.TYPE_INT_RGB);
+        	image.createGraphics();
+        
+         	//-----Fill the background with white------
+	        Graphics2D graphics = (Graphics2D) image.getGraphics();
+	        graphics.setColor(Color.WHITE);
+	        graphics.fillRect(0, 0, matrixSize, matrixSize);
          
-         //-----Fill the background with white------
-         Graphics2D graphics = (Graphics2D) image.getGraphics();
-         graphics.setColor(Color.WHITE);
-         graphics.fillRect(0, 0, matrixSize, matrixSize);
          
+	        //------Add the black dots to make up the QR code
+	        graphics.setColor(Color.BLACK);
+	
+	        for (int x = 0; x < qrCode.size; x++) {
+	        	for (int y = 0; y < qrCode.size; y++) {
+	                	if (!qrCode.getModule(x, y)) { continue; }
+	                 
+	                 	graphics.fillRect(x * scalar, y * scalar, scalar, scalar);
+              	
+		        }
+		}
          
-         //------Add the black dots to make up the QR code
-         graphics.setColor(Color.BLACK);
-
-         for (int x = 0; x < qrCode.size; x++) {
-             for (int y = 0; y < qrCode.size; y++) {
-                 if (!qrCode.getModule(x, y)) { continue; }
-                 
-                 graphics.fillRect(x * scalar, y * scalar, scalar, scalar);
-              
-             }
-         }
-         
-		 return image;
+		return image;
 	}
 	
 	
@@ -320,7 +320,7 @@ public class Resume  {
 			Image qrCodeImage = Image.getInstance(baos.toByteArray());
 			
 			//Scale the QR code. Create the QR code big, then scale down for clarity reasons. 
-			qrCodeImage.scalePercent(9.6f);
+			qrCodeImage.scalePercent(8.6f);
 			//Add the QR code image to the container
 			qrCode = new PdfPCell(qrCodeImage);
 			
