@@ -475,7 +475,7 @@ public class Resume  {
 		date.setUseAscender(true);
 		
 		//Add bulleted info
-		PdfPCell bullet1 = createBulletCell("GPA of 3.855");
+		PdfPCell bullet1 = createBulletCell("GPA of 3.860");
 		
 		PdfPCell bullet2 = createBulletCell("Dean's List: Fall 2022, Winter 2022, Fall 2023, Winter 2023");
 		
