@@ -87,35 +87,35 @@ public class Resume  {
 	 * @return {@code BufferedImage} storing the QR code
 	 */
 	private static BufferedImage createQRCode(String URI) {
-		int scalar = 16;
+		 int scalar = 16;
 		 
-		QrCode.Ecc errorCorrectionLevel = QrCode.Ecc.LOW;
-		QrCode qrCode = QrCode.encodeText(REPOURI, errorCorrectionLevel);
+		 QrCode.Ecc errorCorrectionLevel = QrCode.Ecc.LOW;
+	     QrCode qrCode = QrCode.encodeText(REPOURI, errorCorrectionLevel);
          
-		int matrixSize = qrCode.size * scalar;
+	     int matrixSize = qrCode.size * scalar;
          
-		BufferedImage image = new BufferedImage(matrixSize, matrixSize, BufferedImage.TYPE_INT_RGB);
-        	image.createGraphics();
-        
-         	//-----Fill the background with white------
-	        Graphics2D graphics = (Graphics2D) image.getGraphics();
-	        graphics.setColor(Color.WHITE);
-	        graphics.fillRect(0, 0, matrixSize, matrixSize);
+	     BufferedImage image = new BufferedImage(matrixSize, matrixSize, BufferedImage.TYPE_INT_RGB);
+         image.createGraphics();
+         
+         //-----Fill the background with white------
+         Graphics2D graphics = (Graphics2D) image.getGraphics();
+         graphics.setColor(Color.WHITE);
+         graphics.fillRect(0, 0, matrixSize, matrixSize);
          
          
-	        //------Add the black dots to make up the QR code
-	        graphics.setColor(Color.BLACK);
-	
-	        for (int x = 0; x < qrCode.size; x++) {
-	        	for (int y = 0; y < qrCode.size; y++) {
-	                	if (!qrCode.getModule(x, y)) { continue; }
-	                 
-	                 	graphics.fillRect(x * scalar, y * scalar, scalar, scalar);
-              	
-		        }
-		}
+         //------Add the black dots to make up the QR code
+         graphics.setColor(Color.BLACK);
+
+         for (int x = 0; x < qrCode.size; x++) {
+             for (int y = 0; y < qrCode.size; y++) {
+                 if (!qrCode.getModule(x, y)) { continue; }
+                 
+                 graphics.fillRect(x * scalar, y * scalar, scalar, scalar);
+              
+             }
+         }
          
-		return image;
+		 return image;
 	}
 	
 	
@@ -583,12 +583,13 @@ public class Resume  {
 		//Creates a 'Projects' title
 		PdfPCell projectsTitle = createSectionCell("Projects");
 		
-		//Create a coloring sim subsection
-		PdfPTable project1Header = createSubsectionTable("Coloring Simulator", "August 2018 - July 2022", "Roblox video game with ~450k plays");
+		//Add mutation testing plugin subsection
+		PdfPTable project1Header = createSubsectionTable("Mutation Testing Plugin", "Jaunary 2023 - April 2023", "Roblox testing tool");
 		
-		//Add coloring sim bullet info
-		PdfPCell colSimBullet1 = createBulletCell("Designed a framework that allowed for other programmers to expand upon");
-		PdfPCell colSimBullet2 = createBulletCell("Learned to design achievable deadlines through precise planning and coordination with several developers");
+		//Add mutation testing plugin bullets
+		PdfPCell mtBullet1 = createBulletCell("Assessed effectiveness of mutation testing in game development, gauging community opinion on its utility and impact");
+		PdfPCell mtBullet2 = createBulletCell("Developed a code injection framework for consistent reference handling amid script hierarchical changes");
+		PdfPCell mtBullet3 = createBulletCell("Employed string manipulation in Lua to simulate code mutations, optimizing bug detection and debugging");
 		
 		//Create a minesweeper subsection
 		PdfPTable project2Header = createSubsectionTable("Minesweeper", "January 2022 - April 2023", "Unpublished Roblox video game");
@@ -597,20 +598,19 @@ public class Resume  {
 		PdfPCell msweepBullet1 = createBulletCell("Created a three dimensional version of the classic game Minesweeper using complex garbage collection techniques");
 		PdfPCell msweepBullet2 = createBulletCell("Utilized access modifiers to control access to class data, promoting data integrity");
 		
+		//Create a coloring sim subsection
+		PdfPTable project3Header = createSubsectionTable("Coloring Simulator", "August 2018 - July 2022", "Roblox video game with ~450k plays");
+		
+		//Add coloring sim bullet info
+		PdfPCell colSimBullet1 = createBulletCell("Designed a framework that allowed for other programmers to expand upon");
+		PdfPCell colSimBullet2 = createBulletCell("Learned to design achievable deadlines through precise planning and coordination with several developers");
+		
 		//Create a chess subsection
-		PdfPTable project3Header = createSubsectionTable("Chess", "August 2022 - October 2022", "Java based school project");
+		PdfPTable project4Header = createSubsectionTable("Chess", "August 2022 - October 2022", "Java based school project");
 		
 		//Add chess bullet info
 		PdfPCell chessBullet1 = createBulletCell("Reduced code duplication by employing inheritance to create a hierarchy of game elements");
 		PdfPCell chessBullet2 = createBulletCell("Implemented an AI opponent that prioritizes piece protection and strategic piece captures");
-		
-		//Add mutation testing plugin subsection
-		PdfPTable project4Header = createSubsectionTable("Mutation Testing Plugin", "Jaunary 2023 - April 2023", "Roblox testing tool");
-		
-		//Add mutation testing plugin bullets
-		PdfPCell mtBullet1 = createBulletCell("Assessed effectiveness of mutation testing in game development, gauging community opinion on its utility and impact");
-		PdfPCell mtBullet2 = createBulletCell("Developed a code injection framework for consistent reference handling amid script hierarchical changes");
-		PdfPCell mtBullet3 = createBulletCell("Employed string manipulation in Lua to simulate code mutations, optimizing bug detection and debugging");
 
 		//Set padding between subsections
 		colSimBullet2.setPaddingBottom(subsectionPadding);
@@ -620,26 +620,26 @@ public class Resume  {
 		//Add 'Projects'
 		projects.addCell(projectsTitle);
 		
-		//Add the coloring sim stuff
+		//Add the mutation testing stuff
 		projects.addCell(project1Header);
-		projects.addCell(colSimBullet1);
-		projects.addCell(colSimBullet2);
+		projects.addCell(mtBullet1);
+		projects.addCell(mtBullet2);
+		projects.addCell(mtBullet3);
 		
 		//Add the minesweeeper stuff
 		projects.addCell(project2Header);
 		projects.addCell(msweepBullet1);
 		projects.addCell(msweepBullet2);
 		
-		//Add the chess stuff
+		//Add the coloring Simulator stuff
 		projects.addCell(project3Header);
+		projects.addCell(colSimBullet1);
+		projects.addCell(colSimBullet2);
+		
+		//Add the chess stuff
+		projects.addCell(project4Header);
 		projects.addCell(chessBullet1);
 		projects.addCell(chessBullet2);
-		
-		//Add all of the mutation testing stuff
-		projects.addCell(project4Header);
-		projects.addCell(mtBullet1);
-		projects.addCell(mtBullet2);
-		projects.addCell(mtBullet3);
 	
 		return projects;
 	}
