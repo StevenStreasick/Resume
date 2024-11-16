@@ -423,7 +423,7 @@ public class Resume  {
 		//The header container for this section
 		PdfPTable educationTable = new PdfPTable(3);
 		educationTable.setWidthPercentage(100f);
-		educationTable.setWidths(new float[] {.92f, 1f, .3f});
+		educationTable.setWidths(new float[] {.92f, 1f, .32f});
 		
 		//The title to this section
 		PdfPCell educationTitle = createSectionCell("Education");
@@ -449,7 +449,7 @@ public class Resume  {
 		location.setUseAscender(true);
 		
 		//Create degree info
-		PdfPCell degree = new PdfPCell(new Phrase("Masters of Science, Applied Computer Science", subsectionDescriptorFont));
+		PdfPCell degree = new PdfPCell(new Phrase("Masters of Science, Computer Science", subsectionDescriptorFont));
 		//Format degree info
 		degree.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
 		degree.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
@@ -460,34 +460,25 @@ public class Resume  {
 		//Create minor info
 		PdfPCell minor = new PdfPCell(new Phrase("Minor in Mathematics", subsectionDescriptorFont));
 		//Format minor info
-		minor.setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+		minor.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
 		minor.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
 		minor.setBorder(PdfPCell.NO_BORDER);
 		minor.setUseAscender(true);
-		
-		//Create graduation date
-		PdfPCell date = new PdfPCell(new Phrase("December 2025", dateLocationFont));
-		//Format graduation date
-		date.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
-		date.setVerticalAlignment(PdfPCell.ALIGN_MIDDLE);
-		date.setBorder(PdfPCell.NO_BORDER);
-		date.setPaddingRight(0);
-		date.setUseAscender(true);
+		minor.setColspan(2);
 		
 		//Add bulleted info
 		PdfPCell bullet1 = createBulletCell("GPA of 3.860");
 		
 		PdfPCell bullet2 = createBulletCell("Dean's List: Fall 2022, Winter 2022, Fall 2023, Winter 2023");
 		
-		PdfPCell bullet3 = createBulletCell("Relevant Classwork: Applied AI, "
-				+ "Software Engineering, Database, Structure of Programming Languages");
+		PdfPCell bullet3 = createBulletCell("Relevant Classwork: Datastructures and Algorithms, Applied AI, "
+				+ "Software Engineering, Linear Algebra");
 		
 		//Setup the header
 		educationTable.addCell(schoolCell);
 		educationTable.addCell(location);
 		educationTable.addCell(degree);
 		educationTable.addCell(minor);
-		educationTable.addCell(date);
 		
 		//Add 'Education' to table
 		educationSection.addCell(educationTitle);
